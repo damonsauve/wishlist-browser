@@ -1,0 +1,268 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { display: block; }
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: none; }
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+  ========================================
+  Links
+  ========================================
+*/
+
+a
+{
+    text-decoration: none;
+    color: #111;
+}
+
+a:active, a:hover { color: #430098; }
+
+/*
+  ========================================
+   Styles
+  ========================================
+*/
+
+body
+{
+    background: #eaeaed;
+    color: #333;
+    font-family: utopia-std,Georgia,serif;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+h1
+{
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 2px;
+    color: red;
+    font-family: utopia-std,Georgia,serif;
+}
+
+h2
+{
+    font-size: 20px;
+    line-height: 30px;
+}
+
+h3
+{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 800;
+    /*font-variant: small-caps;*/
+    letter-spacing: 1px;
+    padding-bottom: 20px;
+}
+
+h4
+{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+h5
+{
+    font-size: 14px;
+    line-height: 21px;
+}
+
+b, strong { font-weight: 700; }
+cite, em { font-style: italic; }
+
+img {
+    /* border-radius: 6px; */
+    display: block;
+    max-width: 70%;
+    background: #eaeaed;
+    border: 1px solid #9799a7;
+    margin: 40px 20px 20px 40px;
+    padding: 4px;
+}
+
+/*
+  ========================================
+  Grid
+  ========================================
+*/
+
+*,
+*:before,
+*:after
+{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.col-1-2-a,
+.col-1-2-b {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.col-1-2-a {
+    width: 55%;
+}
+
+.col-1-2-b {
+    width: 45%;
+}
+
+.container,
+.grid {
+    margin: 0 auto;
+    width: 960px;
+    background: #fff;
+}
+
+.grid,
+.col-1-2-a,
+.col-1-2-b {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 40px;
+}
+
+.container {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+
+/*
+  ========================================
+  Header
+  ========================================
+*/
+
+.header
+{
+    border-width: 5px 5px 0px 5px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-color: gray;
+    border-style: solid;
+}
+
+/*
+  ========================================
+  Body
+  ========================================
+*/
+
+.body
+{
+    border: 5px gray solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/*
+  ========================================
+  Footer
+  ========================================
+*/
+
+.footer
+{
+    border-width: 0px 5px 5px 5px;
+    border-color: gray;
+    border-style: solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/*
+  ========================================
+  Pagination
+  ========================================
+*/
+
+.pagination
+{
+    text-align: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+/*
+  ========================================
+   Custom Styles
+  ========================================
+*/
+
+.logo
+{
+    color: red;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.tagline
+{
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+.top-deals
+{
+    font-size: 12px;
+}
+
+.product-info
+{
+    padding-bottom: 20px;
+}
+
+.product-numbers
+{
+    color: #666;
+    font-variant: small-caps;
+}
+
+.buy-it-now
+{
+    text-align: center;
+}
