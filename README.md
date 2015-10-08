@@ -1,6 +1,6 @@
 # Amazon Wish List Browser
 
-A code sample that uses the Amazon to product list and single-product APIs, using PHP, Smarty templates, and a Redis datastore for caching API results, all available on an AWS EC2 instance.
+A code sample that uses <a href="http://doitlikejustin.github.io/amazon-wish-lister/">Amazon Wish Lister</a> API to browse an Amazon Wish List using PHP, Smarty templates, and a Redis datastore for caching API results, all available on an AWS EC2 instance.
 
 Application details:
 - MVC architecture.
