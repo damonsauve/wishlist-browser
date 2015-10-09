@@ -6,7 +6,8 @@ Application details:
 - Custom MVC architecture.
 - Flat include structure minimizes class overhead.
 - Smarty template engine.
-- uses Redis datastore to cache product API results to improve performance.
+- Mobile-ready responsive design using Bootstrap.
+- Uses Redis datastore to cache Amazon wish list data per user ID.
 
 To do (work in progress):
 - UI/UX improvements.
