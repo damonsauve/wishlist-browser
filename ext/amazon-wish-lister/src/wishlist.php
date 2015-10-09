@@ -12,6 +12,7 @@
 error_reporting(0);
 set_time_limit(60);
 require_once('phpquery.php');
+//phpQuery::$debug = 1;
 
 //?id=YOUR_AMAZON_ID
 //get the amazon id or force an ID if none is passed
@@ -51,11 +52,12 @@ else $sort = 'sort=date-added';
 
 $baseurl = 'http://www.amazon.com';
 $content = phpQuery::newDocumentFile("$baseurl/registry/wishlist/$amazon_id?$reveal&$sort&layout=standard");
-$i = 0;
+$i = 1;
+$array= array();
 
 if($content == '')
 {
-    echo('ERROR');
+    echo('ERROR: no phpQuery document');
     die();
 }
 else
@@ -81,7 +83,7 @@ else
 
         if($contents == '')
         {
-            echo('ERROR');
+            echo('ERROR: no phpQuery document');
             die();
         }
         else
@@ -121,9 +123,15 @@ else
             //let's load a the new wishlist
             else
             {
+                // Damon's Wish List
+                //
+                $profile = $contents->find('span.a-hidden#regPageTitle')->text();
+                array_push($array, $profile);
+
                 $items = pq('.g-items-section div[id^="item_"]');
 
                 //https://code.google.com/p/phpquery/wiki/Selectors
+                //http://codingexplained.com/coding/php/manipulating-dom-documents-with-phpquery
 
                 //loop through items
                 foreach($items as $item)
@@ -135,6 +143,16 @@ else
                     if(!empty($name) && !empty($link))
                     {
                         //$array[$i]['array'] = pq($item)->html();
+
+                        $blob = pq($item)->find('div[id^="itemInfo_"] div.a-row div.a-column div.a-size-small')->text();
+
+                        if (!empty($blob))
+                        {
+                            preg_match('/\s+by (.*?)\(/', $blob, $matches);
+                            //preg_match('/\s+(by .*?)\(.*?\)/', $blob, $matches);
+                            $array[$i]['author'] = $matches[1];
+                        }
+
                         $array[$i]['num'] = $i + 1;
                         $array[$i]['name'] = $name;
                         $array[$i]['link'] = $baseurl . $link;

@@ -18,6 +18,7 @@ class Product
     private $productUrl;
     private $starRating;
     private $productReviewsUrl;
+    private $author;
     private $product_list = array();
 
     function __construct()
@@ -44,6 +45,7 @@ class Product
         $this->comment      = $product_data['comment'];
         $this->picture      = $product_data['picture'];
         $this->page         = $product_data['page'];
+        $this->author       = $product_data['author'];
 
         $this->setAsin();
         $this->cleanImageUrl();

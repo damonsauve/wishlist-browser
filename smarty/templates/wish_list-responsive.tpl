@@ -13,23 +13,53 @@
 
 <div class="container">
 
+<!--
+to do:
+    tool tip quick view -> modal + comment
+    carousel for featured items
+    on mouseover, increase font size or raise awareness
+
+assignment requirements:
+    Navbar with dropdowns
+    Modal window
+    Tooltip
+    Carousel
+    Tabs
+    Bonus: Collapse
+    Bonus: Progress bar with animation
+
+-->
+
     <div class="row header-row">
         <div class="col-xs-12 col-sm-12">
-            <div class="dropdown pull-right">
-                <button id="dLabel" type="button" data-toggle="dropdown">
-                    Wish Lists
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="http://wishlist/wishlist/?id=3QO0UVENSYBBJ">Vallemar Library (cached)</a></li>
-                    <li><a href="http://wishlist/wishlist/?id=3QO0UVENSYBBJ&co=1">Vallemar Library</a></li>
-                    <li><a href="http://wishlist/wishlist/?id=3XFAFTBCX52X">Damon's (cached)</a></li>
-                    <li><a href="http://wishlist/wishlist/?id=3XFAFTBCX52X&co=1">Damon's</a></li>
-                </ul>
+            <div class="pull-right">
+                <div class="dropdown ">
+                    <button id="wish-lists" type="button" data-toggle="dropdown">
+                        Wish Lists
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/wishlist/?id=3QO0UVENSYBBJ">Vallemar Library (cached)</a></li>
+                        <li><a href="/wishlist/?id=3QO0UVENSYBBJ&co=1">Vallemar Library</a></li>
+                        <li><a href="/wishlist/?id=3XFAFTBCX52X">Damon's (cached)</a></li>
+                        <li><a href="/wishlist/?id=3XFAFTBCX52X&co=1">Damon's</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown ">
+                    <button id="sorting" type="button" data-toggle="dropdown">
+                        Sort by:
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/wishlist/?id={$amazon_id}&co=&sort=price-low">Price (low to high)</a></li>
+                        <li><a href="/wishlist/?id={$amazon_id}&co=&sort=price-high">Price (high to low)</a></li>
+                        <li><a href="/wishlist/?id={$amazon_id}&co=&sort=title">Title</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <h1 class="logo">Vallemar School Library</h1>
-            <h2 class="logo sub-logo">Amazon Wish List</h2>
+            <h1 class="logo">{$profile}</h1>
+            <h2 class="logo sub-logo"><a href="{$profile_link}" target="_blank">Visit Amazon Wish List</a></h2>
         </div>
     </div>
 
@@ -42,21 +72,23 @@
 
                 <h3 class="product-name"><a href={$product.productUrl} target="_blank">{$product.name}</a></h3>
 
+                <div class="product-author">by {$product.author}</div>
+
     {if isset($product.rating) && !empty($product.rating) }
                 <img class="product-star-rating" src="/i/rating-{$product.starRating}.png">
-                <div class="product-rating">{$product.rating}
+                <!--<div class="product-rating">{$product.rating}</div>-->
 
         {if isset($product.totalRatings) && !empty($product.totalRatings) }
                 <span class="product-total-ratings">(<a href="{$product.productReviewsUrl}" target="_blank">{$product.totalRatings}</a>)</span>
         {/if}
-                </div>
+
     {/if}
                 <div class="product-price">{$product.newPrice}</div>
-                <div class="product-added">Date Added: {$product.dateAdded}</div>
 
     {if isset($product.priority) && !empty($product.priority) }
                 <div class="product-priority">Priority: {$product.priority}</div>
     {/if}
+                <!--<div class="product-added">Added: {$product.dateAdded}</div>-->
                 <!-- <div class="product-comment">{$product.comment}</div> -->
                 <!--<div class="product-asin">ASIN: {$product.asin}</div>-->
             </div>

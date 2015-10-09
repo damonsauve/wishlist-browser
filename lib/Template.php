@@ -35,7 +35,7 @@ class Template
     {
         $product_info = array();
 
-        foreach ($this->vars as $var)
+        foreach ($this->vars['items'] as $var)
         {
             $product_info[] = $var;
         }
@@ -46,6 +46,14 @@ class Template
             'products',
             $product_info
         );
+
+        foreach ($this->vars['meta'] as $k => $v)
+        {
+            $this->smarty->assign(
+                $k,
+                $v
+            );
+        }
 
         if(!empty($this->pagination))
         {

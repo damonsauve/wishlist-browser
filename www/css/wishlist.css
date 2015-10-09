@@ -1,6 +1,6 @@
 
 .container {
-    /*width:800px;*/
+    width:800px;
     margin-left:auto;
     margin-right:auto;
 }
@@ -20,7 +20,7 @@
 }
 
 .sub-logo {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .header-row {
@@ -62,4 +62,12 @@
     margin-right: 0;
     margin-bottom: 4px;
     margin-left: 0;
+}
+
+.product-total-ratings {
+    line-height: 18px;
+}
+
+.product-author {
+
 }

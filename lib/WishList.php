@@ -11,6 +11,10 @@ class WishList
     //
     private $wishlist_array = array();
 
+    private $profile;
+    private $profile_link;
+    private $amazon_id;
+
     // an array of product objects.
     //
     private $wishlist = array();
@@ -34,8 +38,6 @@ class WishList
 
     public function getList()
     {
-        //$this->cache_obj->setCacheKey('vallemar-');
-
         if ($cached_obj = $this->getListFromCache())
         {
             $this->convertToArray($cached_obj);
@@ -51,7 +53,13 @@ class WishList
             //    //print "error: Must supply a non-null value to parse";
             //    throw new InvalidArgumentException("Must supply a non-null value to parse.");
             //}
-            //print_r($wishlist_array);
+
+            //echo "\n\n<li><tt>zebug [" . __LINE__ . "] [" . __FILE__ . "] [<i>" . __FUNCTION__ . "()</i>]</tt>\n";
+            //$this->dump($wishlist_array);
+
+            $wishlist_array = $this->setProfile($wishlist_array);
+
+            $this->setProfileLink();
 
             $this->setListData($wishlist_array);
 
@@ -59,6 +67,33 @@ class WishList
         }
 
         return $this->wishlist;
+    }
+
+    public function setAmazonId($id)
+    {
+        $this->amazon_id = $id;
+    }
+
+    private function setProfile($wishlist_array)
+    {
+        $this->profile = array_shift($wishlist_array);
+
+        return $wishlist_array;
+    }
+
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    public function setProfileLink()
+    {
+        $this->profile_link = 'http://www.amazon.com/registry/wishlist/' . $this->amazon_id;
+    }
+
+    public function getProfileLink()
+    {
+        return $this->profile_link;
     }
 
     private function convertToArray($cached_obj)

@@ -42,7 +42,13 @@ $wishlist = new WishList();
 $wishlist->setWishListLib($wishlist_lib);
 $wishlist->setProductObj($product);
 $wishlist->setCacheObj($cache);
-$list = $wishlist->getList();
+$wishlist->setAmazonId($_GET['id']);
+
+$list['items'] = $wishlist->getList();
+
+$list['meta']['amazon_id'] = $_GET['id'];
+$list['meta']['profile'] = $wishlist->getProfile();
+$list['meta']['profile_link'] = $wishlist->getProfileLink();
 
 $tpl = new Template(
     'wish_list-responsive.tpl',
