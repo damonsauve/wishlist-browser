@@ -15,9 +15,22 @@ require_once('phpquery.php');
 
 //?id=YOUR_AMAZON_ID
 //get the amazon id or force an ID if none is passed
-if(isset($_GET['id'])) $amazon_id = $_GET['id'];
-//else $amazon_id = '3QO0UVENSYBBJ';
-else $amazon_id = '3XFAFTBCX52X';
+if (isset($_GET['id']))
+{
+    $amazon_id = $_GET['id'];
+}
+else
+{
+    // vallemar library.
+    //
+    //$amazon_id = '3QO0UVENSYBBJ';
+
+    // damon
+    //
+    $amazon_id = '3XFAFTBCX52X';
+}
+
+//http://www.amazon.com/registry/wishlist/3XFAFTBCX52X
 
 //?reveal=unpurchased
 //checks what to reveal (unpurchased, all, or purchased)... defaults to unpurchased
@@ -110,28 +123,44 @@ else
             {
                 $items = pq('.g-items-section div[id^="item_"]');
 
+                //https://code.google.com/p/phpquery/wiki/Selectors
+
                 //loop through items
                 foreach($items as $item)
                 {
                     $name = trim(htmlentities(pq($item)->find('a[id^="itemName_"]')->html(), ENT_COMPAT|ENT_HTML401, 'UTF-8', FALSE));
+
                     $link = pq($item)->find('a[id^="itemName_"]')->attr('href');
 
                     if(!empty($name) && !empty($link))
                     {
-                        $total_ratings = pq($item)->find('div[id^="itemInfo_"] div:a-spacing-small:first a.a-link-normal:last')->html();
-                        $total_ratings = trim(str_replace(array('(', ')'), '', $total_ratings));
-                        $total_ratings = is_numeric($total_ratings) ? $total_ratings : '';
-
                         //$array[$i]['array'] = pq($item)->html();
                         $array[$i]['num'] = $i + 1;
                         $array[$i]['name'] = $name;
                         $array[$i]['link'] = $baseurl . $link;
                         $array[$i]['old-price'] = 'N/A';
-                        $array[$i]['new-price'] = trim(pq($item)->find('div.a-spacing-small div.a-row span.a-size-medium.a-color-price')->html());
+                        $array[$i]['new-price'] = trim(pq($item)->find('div.a-spacing-small div.a-row div.a-section span.a-color-price')->html());
                         $array[$i]['date-added'] = trim(str_replace('Added', '', pq($item)->find('div[id^="itemAction_"] .a-size-small')->html()));
                         $array[$i]['priority'] = trim(pq($item)->find('span[id^="itemPriorityLabel_"]')->html());
-                        $array[$i]['rating'] = 'N/A';
-                        $array[$i]['total-ratings'] = $total_ratings;
+
+                        $rating = pq($item)->find('div[id^="itemInfo_"] div.a-row div.a-column div.a-row a.a-link-normal i.a-icon span.a-icon-alt')->html();
+
+                        if (!empty($rating))
+                        {
+                            $pieces = explode( 'stars', $rating);
+                            $array[$i]['rating']  = $pieces[0] . 'stars';
+                        }
+
+                        $total_ratings = pq($item)->find('div[id^="itemInfo_"] div.a-row div.a-column div.a-row a.a-link-normal')->html();
+                        preg_match('/\(\d+\)/', $total_ratings, $matches);
+                        $total_ratings = trim(str_replace(array('(', ')'), '', $matches[0]));
+                        $total_ratings = is_numeric($total_ratings) ? $total_ratings : '';
+
+                        if (!empty($total_ratings))
+                        {
+                            $array[$i]['total-ratings'] = $total_ratings;
+                        }
+
                         $array[$i]['comment'] = trim(pq($item)->find('span[id^="itemComment_"]')->html());
                         $array[$i]['picture'] = pq($item)->find('div[id^="itemImage_"] img')->attr('src');
                         $array[$i]['page'] = $page_num;

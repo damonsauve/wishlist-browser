@@ -15,7 +15,9 @@ class Product
     private $comment;
     private $picture;
     private $page;
-
+    private $productUrl;
+    private $starRating;
+    private $productReviewsUrl;
     private $product_list = array();
 
     function __construct()
@@ -44,22 +46,73 @@ class Product
         $this->page         = $product_data['page'];
 
         $this->setAsin();
-        $this->setPicture();
+        $this->cleanImageUrl();
+        $this->buildProductUrl();
+        $this->buildProductReviewsUrl();
+        $this->setStarRating();
 
-        $this->cache_obj->setCacheKey('vallemar-' . $this->asin);
+        $this->cache_obj->setItemKey($this->asin);
 
+        // should just return the original array!
+        //
         $this->convertToArray();
+
+        // just cache the original array!
+        //
         $this->cacheList();
 
         return $this->product_list;
     }
 
-    private function setPicture()
+    private function buildProductReviewsUrl()
     {
-        // http://ecx.images-amazon.com/images/I/61JCfmhZY5L._SL500_SL135_.jpg
+        // http://www.amazon.com/Kristys-Great-Idea-Full-Color-Baby-Sitters/product-reviews/0545813867/ref=wl_it_o_cm_cr_acr_txt?ie=UTF8&colid=3XFAFTBCX52X&coliid=INRVJXFQ3U6B6&showViewpoints=1#
+
+        $this->productReviewsUrl = 'http://www.amazon.com/product-reviews/' . $this->asin;
+    }
+
+    private function setStarRating()
+    {
+        if ($this->rating > 4.8)
+        {
+            $this->starRating = 5;
+        }
+        elseif ($this->rating > 3.9)
+        {
+            $this->starRating = 4;
+        }
+        elseif ($this->rating > 2.9)
+        {
+            $this->starRating = 3;
+        }
+        elseif ($this->rating > 1.9)
+        {
+            $this->starRating = 2;
+        }
+        elseif ($this->rating > 0.9)
+        {
+            $this->starRating = 1;
+        }
+        else
+        {
+            $this->starRating = 0;
+        }
+    }
+
+    private function buildProductUrl()
+    {
+        // http://www.amazon.com/dp/0545813867/ref=wl_it_dp_v_S_ttl/183-5046167-8156964?_encoding=UTF8&colid=3XFAFTBCX52X&coliid=INRVJXFQ3U6B6
         //
-        $pattern = '/_SL135_/i';
-        $replacement = '_SL260_';
+        $this->productUrl = 'http://www.amazon.com/dp/' . $this->asin;
+    }
+
+    private function cleanImageUrl()
+    {
+        // http://ecx.images-amazon.com/images/I/51sHIcSIedL._SL500_PIsitb-sticker-arrow-big,TopRight,35,-73_OU01_SL135_.jpg
+        // http://ecx.images-amazon.com/images/I/51HtShvWYsL._SL160_.jpg
+        //
+        $pattern = '/_SL500_.*?jpg/';
+        $replacement = '_SL160_.jpg';
 
         $this->picture = preg_replace($pattern, $replacement, $this->picture);
     }

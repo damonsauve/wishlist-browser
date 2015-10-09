@@ -3,8 +3,9 @@
 class Cache
 {
     private $cache;
-    private $key;
-    private $enable_cache = 0;
+    private $amazon_id;
+    private $itemKey;
+    private $disable_cache = 0;
 
     function __construct($cache)
     {
@@ -16,22 +17,25 @@ class Cache
         $this->cache = $cache;
     }
 
-    public function setCacheKey($key)
+    public function setAmazonId($amazon_id)
     {
-        $this->key = $key;
+        $this->amazon_id = $amazon_id;
     }
 
-    public function enableCache($bool)
+    public function setItemKey($key)
     {
-        $this->enable_cache = $bool;
+        $this->itemKey = $key;
+    }
+
+    public function disableCache($bool)
+    {
+        $this->disable_cache = $bool;
     }
 
     private function isCacheEnabled()
     {
-        if ($this->enable_cache == false)
+        if ($this->disable_cache == true)
         {
-            print "cache is off<p>";
-
             return false;
         }
 
@@ -40,8 +44,10 @@ class Cache
 
     public function loadCache($data)
     {
+        $cache_key = $this->amazon_id . '-' . $this->itemKey;
+
         $this->cache->set(
-            $this->key,
+            $cache_key,
             json_encode($data)
         );
     }
@@ -50,8 +56,10 @@ class Cache
     {
         if ($this->isCacheEnabled())
         {
+            $cache_key = $this->amazon_id . '-' . $this->itemKey;
+
             $keys = $this->cache->KEYS(
-                $this->key . '*'
+                $cache_key . '*'
             );
 
             $data = array();

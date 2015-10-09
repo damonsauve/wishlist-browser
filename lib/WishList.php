@@ -34,7 +34,7 @@ class WishList
 
     public function getList()
     {
-        $this->cache_obj->setCacheKey('vallemar-');
+        //$this->cache_obj->setCacheKey('vallemar-');
 
         if ($cached_obj = $this->getListFromCache())
         {
@@ -67,7 +67,6 @@ class WishList
 
         foreach ($cached_obj as  $value)
         {
-
             foreach ($value as $k => $v)
             {
                 $temp[$k] = $v;
