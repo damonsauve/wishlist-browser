@@ -55,6 +55,13 @@ class Template
             );
         }
 
+        // carousel
+        //
+        $this->smarty->assign(
+            'carousel',
+            $this->vars['carousel']
+        );
+
         if(!empty($this->pagination))
         {
             foreach ($this->pagination as $k => $v)

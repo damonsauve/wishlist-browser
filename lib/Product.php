@@ -48,7 +48,7 @@ class Product
         $this->author       = $product_data['author'];
 
         $this->setAsin();
-        $this->cleanImageUrl();
+        $this->picture = $this->cleanImageUrl($this->picture);
         $this->buildProductUrl();
         $this->buildProductReviewsUrl();
         $this->setStarRating();
@@ -108,15 +108,15 @@ class Product
         $this->productUrl = 'http://www.amazon.com/dp/' . $this->asin;
     }
 
-    private function cleanImageUrl()
+    public function cleanImageUrl($image, $width=160)
     {
         // http://ecx.images-amazon.com/images/I/51sHIcSIedL._SL500_PIsitb-sticker-arrow-big,TopRight,35,-73_OU01_SL135_.jpg
         // http://ecx.images-amazon.com/images/I/51HtShvWYsL._SL160_.jpg
         //
-        $pattern = '/_SL500_.*?jpg/';
-        $replacement = '_SL160_.jpg';
+        $pattern = '/_SL.*?jpg/';
+        $replacement = '_SL' . $width . '_.jpg';
 
-        $this->picture = preg_replace($pattern, $replacement, $this->picture);
+        return preg_replace($pattern, $replacement, $image);
     }
 
     private function setAsin()

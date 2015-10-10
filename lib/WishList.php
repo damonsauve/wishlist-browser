@@ -19,6 +19,8 @@ class WishList
     //
     private $wishlist = array();
 
+    private $carousel = array();
+
     private $product_list;
 
     function __construct()
@@ -64,6 +66,8 @@ class WishList
             $this->setListData($wishlist_array);
 
             $this->getProductsFromList();
+
+            $this->setProductsImagesForCarousel();
         }
 
         return $this->wishlist;
@@ -114,6 +118,30 @@ class WishList
     private function setListData($array)
     {
         $this->wishlist_array = $array;
+    }
+
+    public function getProductsImagesForCarousel()
+    {
+        return $this->carousel;
+    }
+
+    private function setProductsImagesForCarousel()
+    {
+        foreach ($this->wishlist as $value)
+        {
+            // [picture] => http://ecx.images-amazon.com/images/I/41nN1N9WQmL._SL500_SL135_.jpg
+            //
+            $temp['picture'] = $this->product_obj->cleanImageUrl($value['picture'], 300);
+            $temp['name'] = $value['name'];
+            $temp['productUrl'] = $value['productUrl'];
+
+            $this->carousel[] = $temp;
+
+            if (count($this->carousel) == 4)
+            {
+                break;
+            }
+        }
     }
 
     private function getProductsFromList()

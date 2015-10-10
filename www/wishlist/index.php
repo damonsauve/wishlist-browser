@@ -24,14 +24,20 @@ if (isset($_GET['co']) && $_GET['co'] = 1)
 
 $cache->disableCache($disable_cache);
 
-if (!isset($_GET['id']) || empty($_GET['id']))
+$amazon_id = '3XFAFTBCX52X';
+
+if (isset($_GET['id']) || !empty($_GET['id']))
 {
     //vallemar library = '3QO0UVENSYBBJ';
     //damon = '3XFAFTBCX52X';
-    $_GET['id'] = '3XFAFTBCX52X';
+    $amazon_id = $_GET['id'];
+}
+else
+{
+    $_GET['id'] = $amazon_id;
 }
 
-$cache->setAmazonId($_GET['id']);
+$cache->setAmazonId($amazon_id);
 
 $product = new Product();
 $product->setCacheObj($cache);
@@ -42,13 +48,14 @@ $wishlist = new WishList();
 $wishlist->setWishListLib($wishlist_lib);
 $wishlist->setProductObj($product);
 $wishlist->setCacheObj($cache);
-$wishlist->setAmazonId($_GET['id']);
+$wishlist->setAmazonId($amazon_id);
 
 $list['items'] = $wishlist->getList();
 
-$list['meta']['amazon_id'] = $_GET['id'];
+$list['meta']['amazon_id'] = $amazon_id;
 $list['meta']['profile'] = $wishlist->getProfile();
 $list['meta']['profile_link'] = $wishlist->getProfileLink();
+$list['carousel'] = $wishlist->getProductsImagesForCarousel();
 
 $tpl = new Template(
     'wish_list-responsive.tpl',

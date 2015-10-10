@@ -14,16 +14,11 @@
 <div class="container">
 
 <!--
-to do:
-    tool tip quick view -> modal + comment
-    carousel for featured items
-    on mouseover, increase font size or raise awareness
-
-assignment requirements:
-    Navbar with dropdowns
-    Modal window
-    Tooltip
-    Carousel
+Requirements:
+    #Navbar with dropdowns
+    #Modal window
+    #Tooltip
+    #Carousel
     Tabs
     Bonus: Collapse
     Bonus: Progress bar with animation
@@ -31,36 +26,79 @@ assignment requirements:
 -->
 
     <div class="row header-row">
-        <div class="col-xs-12 col-sm-12">
-            <div class="pull-right">
-                <div class="dropdown ">
-                    <button id="wish-lists" type="button" data-toggle="dropdown">
-                        Wish Lists
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/wishlist/?id=3QO0UVENSYBBJ">Vallemar Library (cached)</a></li>
-                        <li><a href="/wishlist/?id=3QO0UVENSYBBJ&co=1">Vallemar Library</a></li>
-                        <li><a href="/wishlist/?id=3XFAFTBCX52X">Damon's (cached)</a></li>
-                        <li><a href="/wishlist/?id=3XFAFTBCX52X&co=1">Damon's</a></li>
-                    </ul>
+        <div class="col-sm-8">
+            <h1 class="logo">{$profile}</h1>
+            <h2 class="logo sub-logo"><a href="{$profile_link}" target="_blank" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="Click to visit {$profile} on Amazon.com.">Amazon Wish List</a></h2>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="bottom-align-text btn-group" role="group" aria-label="...">
+                <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Hide Carousel</button>
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="dropdown ">
+                        <button id="sorting" type="button" data-toggle="dropdown">
+                            Sort by:
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/wishlist/?id={$amazon_id}&co=&sort=title">Title</a></li>
+                            <li><a href="/wishlist/?id={$amazon_id}&co=&sort=price-high">Price (high to low)</a></li>
+                            <li><a href="/wishlist/?id={$amazon_id}&co=&sort=price-low">Price (low to high)</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="dropdown ">
-                    <button id="sorting" type="button" data-toggle="dropdown">
-                        Sort by:
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/wishlist/?id={$amazon_id}&co=&sort=price-low">Price (low to high)</a></li>
-                        <li><a href="/wishlist/?id={$amazon_id}&co=&sort=price-high">Price (high to low)</a></li>
-                        <li><a href="/wishlist/?id={$amazon_id}&co=&sort=title">Title</a></li>
-                    </ul>
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="dropdown">
+                        <button id="wish-lists" type="button" data-toggle="dropdown">
+                            Wish Lists
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/wishlist/?id=3QO0UVENSYBBJ&co=1">Vallemar Library</a></li>
+                            <li><a href="/wishlist/?id=3QO0UVENSYBBJ">Vallemar Library (cached)</a></li>
+                            <li><a href="/wishlist/?id=3XFAFTBCX52X&co=1">Damon's</a></li>
+                            <li><a href="/wishlist/?id=3XFAFTBCX52X">Damon's (cached)</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-            <h1 class="logo">{$profile}</h1>
-            <h2 class="logo sub-logo"><a href="{$profile_link}" target="_blank">Visit Amazon Wish List</a></h2>
         </div>
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div class="well">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 col-md-3-offset carousel">
+
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+
+    {foreach from=$carousel item=product name=foo}
+                        <div class="item{if $smarty.foreach.foo.first} active{else}{/if}">
+                            <img class="carousel-image" src="{$product.picture}" alt="{$product.name}">
+                            <div class="carousel-caption">
+                            {$product.name}
+                            </div>
+                        </div>
+    {/foreach}
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+      </div>
     </div>
 
     <div class="row">
@@ -70,24 +108,44 @@ assignment requirements:
 
                 <a href={$product.productUrl} target="_blank"><img class="product-image" src={$product.picture} alt="{$product.name}"></a>
 
-                <h3 class="product-name"><a href={$product.productUrl} target="_blank">{$product.name}</a></h3>
+                <h3 class="product-name product-info"><a href={$product.productUrl} target="_blank" class="right" title="" data-placement="left" data-toggle="tooltip" data-original-title="Click title to visit the product page on Amazon.com.">{$product.name}</a></h3>
 
-                <div class="product-author">by {$product.author}</div>
+                <div class="product-author product-info">by {$product.author}</div>
 
     {if isset($product.rating) && !empty($product.rating) }
-                <img class="product-star-rating" src="/i/rating-{$product.starRating}.png">
+                <img class="product-star-rating product-info" src="/i/rating-{$product.starRating}.png" class="right" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="{$product.rating}.">
                 <!--<div class="product-rating">{$product.rating}</div>-->
 
         {if isset($product.totalRatings) && !empty($product.totalRatings) }
-                <span class="product-total-ratings">(<a href="{$product.productReviewsUrl}" target="_blank">{$product.totalRatings}</a>)</span>
+                <span class="product-total-ratings product-info">(<a href="{$product.productReviewsUrl}" target="_blank" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="{$product.totalRatings} product reviews.">{$product.totalRatings}</a>)</span>
         {/if}
 
     {/if}
-                <div class="product-price">{$product.newPrice}</div>
+                <div class="product-price product-info">{$product.newPrice}</div>
 
     {if isset($product.priority) && !empty($product.priority) }
-                <div class="product-priority">Priority: {$product.priority}</div>
+               <!-- <div class="product-priority product-info">Priority: {$product.priority}</div>-->
     {/if}
+
+    {if isset($product.comment) && !empty($product.comment) }
+                <a href="#" id="product-comment" data-toggle="modal" data-target="#comment-modal">View Comments</a>
+
+                <div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Comments for: {$product.name}</h4>
+                      </div>
+                      <div class="modal-body"><p>{$product.comment}</p></div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    {/if}
+
                 <!--<div class="product-added">Added: {$product.dateAdded}</div>-->
                 <!-- <div class="product-comment">{$product.comment}</div> -->
                 <!--<div class="product-asin">ASIN: {$product.asin}</div>-->

@@ -1,6 +1,5 @@
 
 .container {
-    width:800px;
     margin-left:auto;
     margin-right:auto;
 }
@@ -10,10 +9,15 @@
 }
 
 .col {
-/*    border: #000 1px solid;
-*/    height: 240px;
+    height: 240px;
 }
 
+#product-comment {
+    margin-top: 24px;
+    margin-right: 0;
+    margin-bottom: 4px;
+    margin-left: 0;
+}
 
 .logo {
     font-size: 20px;
@@ -25,25 +29,32 @@
 
 .header-row {
     margin-top: 40px;
+}
+
+.carousel {
+    color: red;
+    background-color: #666;
+    position: relative;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.product-name {
-    font-size: 14px;
-    margin-top: 30px;
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+.carousel-caption {
+      padding: 4px;
+      background-color: #dedede;
+      color: #000;
+}
+
+.carousel-image {
+    margin-top: 20px;
     margin-right: 20px;
-    margin-bottom: 4px;
-    margin-left: 0;
-}
-
-.product-asin {
-    /*font-size: 12px;*/
-}
-
-.product-price {
-    font-size: 13px;
-    color: #b12704;
-    font-weight: 700;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 4px;
 }
 
 .product-image {
@@ -56,12 +67,33 @@
     padding: 4px;
 }
 
-.product-star-rating {
-    width: 80px;
-    margin-top: 4px;
-    margin-right: 0;
+.product-info {
+    font-size: 14px;
+    margin-top: 0;
+    margin-right: 20px;
     margin-bottom: 4px;
     margin-left: 0;
+    line-height: 20px;
+}
+
+.product-name {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 6px;
+}
+
+.product-asin {
+}
+
+.product-price {
+    font-size: 13px;
+    color: #b12704;
+    font-weight: 700;
+}
+
+.product-star-rating {
+    margin-right: 0;
+    width: 80px;
 }
 
 .product-total-ratings {
@@ -69,5 +101,21 @@
 }
 
 .product-author {
+}
 
+@media (min-width: 768px) {
+
+    .container {
+        width:960px;
+    }
+
+    .row {
+        position: relative;
+    }
+
+    .bottom-align-text {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
 }

@@ -111,7 +111,7 @@ else
                         $array[$i]['priority'] = pq($item)->find('span.priorityValueText')->html();
                         $array[$i]['rating'] = pq($item)->find('span.asinReviewsSummary a span span')->html();
                         $array[$i]['total-ratings'] = pq($item)->find('span.crAvgStars a:nth-child(2)')->html();
-                        $array[$i]['comment'] = pq($item)->find('span.commentValueText')->html();
+                        $array[$i]['comment'] = htmlentities(pq($item)->find('span.commentValueText')->text(), ENT_COMPAT|ENT_HTML401, 'UTF-8', FALSE);
                         $array[$i]['picture'] = pq($item)->find('td.productImage a img')->attr('src');
                         $array[$i]['page'] = $page_num;
 
@@ -152,6 +152,10 @@ else
                             //preg_match('/\s+(by .*?)\(.*?\)/', $blob, $matches);
                             $array[$i]['author'] = $matches[1];
                         }
+                        else
+                        {
+                            $array[$i]['author'] = '';
+                        }
 
                         $array[$i]['num'] = $i + 1;
                         $array[$i]['name'] = $name;
@@ -166,20 +170,30 @@ else
                         if (!empty($rating))
                         {
                             $pieces = explode( 'stars', $rating);
-                            $array[$i]['rating']  = $pieces[0] . 'stars';
+                            $array[$i]['rating'] = $pieces[0] . 'stars';
+                        }
+                        else
+                        {
+                            $array[$i]['rating'] = '';
                         }
 
                         $total_ratings = pq($item)->find('div[id^="itemInfo_"] div.a-row div.a-column div.a-row a.a-link-normal')->html();
                         preg_match('/\(\d+\)/', $total_ratings, $matches);
                         $total_ratings = trim(str_replace(array('(', ')'), '', $matches[0]));
                         $total_ratings = is_numeric($total_ratings) ? $total_ratings : '';
+                        $array[$i]['total-ratings'] = $total_ratings;
 
-                        if (!empty($total_ratings))
+                        $comment = pq($item)->find('span[id^="itemComment_"]')->text();
+
+                        if (!empty($comment))
                         {
-                            $array[$i]['total-ratings'] = $total_ratings;
+                            $array[$i]['comment'] = $comment;
+                        }
+                        else
+                        {
+                            $array[$i]['comment'] = '';
                         }
 
-                        $array[$i]['comment'] = trim(pq($item)->find('span[id^="itemComment_"]')->html());
                         $array[$i]['picture'] = pq($item)->find('div[id^="itemImage_"] img')->attr('src');
                         $array[$i]['page'] = $page_num;
 
@@ -232,5 +246,4 @@ else
     //
     return $array;
 }
-
 ?>
