@@ -19,9 +19,6 @@ To do (work in progress):
 - UI/UX improvements.
 - sorting by priority, date added, title, price.
 - pagination.
-- AWS integration:
--- deploy from GitHub using AWS CodeDeploy.
--- run on Ubuntu Trusty instance in AWS EC2.
 - error handling.
 - class interfaces.
 - unit tests.
