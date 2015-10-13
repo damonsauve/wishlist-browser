@@ -16,6 +16,7 @@ Application details:
 - includes scripts needed to create additional EC2 instances.
 
 To do (work in progress):
+- some Smarty vars not cached by Redis (so carousel images don't appear, for example).
 - UI/UX improvements.
 - sorting by priority, date added, title, price.
 - pagination.
