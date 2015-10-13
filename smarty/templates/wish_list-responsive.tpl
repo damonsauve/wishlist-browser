@@ -5,34 +5,34 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vallemar School Library | Amazon Wish List</title>
+    <title>{$profile} at Amazon.com</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/wishlist.css">
+    <link rel="stylesheet" type="text/css" href="css/wishlist.css">
 </head>
 <body>
 
 <div class="container">
 
-<!--
-Requirements:
-    #Navbar with dropdowns
-    #Modal window
-    #Tooltip
-    #Carousel
-    Tabs
-    Bonus: Collapse
-    Bonus: Progress bar with animation
-
--->
+    <div class="row tab-row">
+        <div class="col-sm-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="wish-lister.html" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="Responsive-design version using Bootstrap.">New Version</a></li>
+                <li role="presentation"><a href="index-old.html" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="Non-responsive version.">Old Version</a></li>
+            </ul>
+        </div>
+    </div>
 
     <div class="row header-row">
         <div class="col-sm-8">
             <h1 class="logo">{$profile}</h1>
             <h2 class="logo sub-logo"><a href="{$profile_link}" target="_blank" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="Click to visit {$profile} on Amazon.com.">Amazon Wish List</a></h2>
         </div>
+    </div>
 
-        <div class="col-sm-4">
-            <div class="bottom-align-text btn-group" role="group" aria-label="...">
+    <div class="row button-row">
+        <div class="col-sm-12">
+            <div class="btn-group pull-right" role="group" aria-label="...">
                 <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Hide Carousel</button>
                 <div class="btn-group" role="group" aria-label="...">
                     <div class="dropdown ">
@@ -47,7 +47,6 @@ Requirements:
                         </ul>
                     </div>
                 </div>
-
                 <div class="btn-group" role="group" aria-label="...">
                     <div class="dropdown">
                         <button id="wish-lists" type="button" data-toggle="dropdown">
@@ -67,12 +66,10 @@ Requirements:
     </div>
 
     <div class="collapse" id="collapseExample">
-      <div class="well">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 col-md-3-offset carousel">
-
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div class="row carousel-row">
+            <div class="col-sm-12">
+                <div class="well">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
 
     {foreach from=$carousel item=product name=foo}
@@ -84,24 +81,22 @@ Requirements:
                         </div>
     {/foreach}
                     </div>
-
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
         </div>
-      </div>
     </div>
 
-    <div class="row">
+    <div class="row body-row">
 {foreach $products as $product}
         <div class="col-md-6 col">
             <div class="row">
@@ -113,7 +108,7 @@ Requirements:
                 <div class="product-author product-info">by {$product.author}</div>
 
     {if isset($product.rating) && !empty($product.rating) }
-                <img class="product-star-rating product-info" src="/i/rating-{$product.starRating}.png" class="right" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="{$product.rating}.">
+                <img class="product-star-rating product-info" src="i/rating-{$product.starRating}.png" class="right" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="{$product.rating}.">
                 <!--<div class="product-rating">{$product.rating}</div>-->
 
         {if isset($product.totalRatings) && !empty($product.totalRatings) }
@@ -154,12 +149,16 @@ Requirements:
 {/foreach}
     </div>
 
-    <div class="footer"></div>
+    <div class="row footer-row">
+        <div class="col-sm-12">
+            &copy; 2015 <a href="https://github.com/damonsauve">Damon Sauve</a></div>
+        </div>
+    </div>
 
 </div>
 
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/wishlist.js"></script>
+<script type="text/javascript" src="js/wishlist.js"></script>
 </body>
 </html>
