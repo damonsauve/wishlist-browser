@@ -3,7 +3,7 @@
 A code sample that uses <a href="http://doitlikejustin.github.io/amazon-wish-lister/">Amazon Wish Lister</a> API to browse an Amazon Wish List using PHP, Bootstrap, Smarty templates, and a Redis datastore for caching API results, all available on an AWS EC2 instance.
 
 AWS endpoint:
-- http://52.24.26.122/wishlist/
+- http://52.24.26.122/wishlist/?id=3XFAFTBCX52X&co=1
 
 Application details:
 - Custom MVC architecture.
