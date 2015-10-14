@@ -16,7 +16,7 @@
         <div class="col-sm-12">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="wish-lister.html" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="Responsive-design version using Bootstrap.">New Version</a></li>
+                <li role="presentation" class="active"><a href="" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="Responsive-design version using Bootstrap.">New Version</a></li>
                 <li role="presentation"><a href="index-old.html" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="Non-responsive version.">Old Version</a></li>
             </ul>
         </div>
@@ -98,12 +98,12 @@
 
     <div class="row body-row">
 {foreach $products as $product}
-        <div class="col-md-6 body-col">
+        <div class="col-sm-6 body-col">
             <div class="row">
-                <div class="col-md-5 body-col">
+                <div class="col-sm-5 body-col">
                     <a href={$product.productUrl} target="_blank"><img class="product-image" src={$product.picture} alt="{$product.name}"></a>
                 </div>
-                <div class="col-md-7 body-col">
+                <div class="col-sm-7 body-col">
                     <h3 class="product-name product-info"><a href={$product.productUrl} target="_blank" class="right" title="" data-placement="left" data-toggle="tooltip" data-original-title="Click title to visit the product page on Amazon.com.">{$product.name}</a></h3>
                     <div class="product-author product-info">by {$product.author}</div>
 
