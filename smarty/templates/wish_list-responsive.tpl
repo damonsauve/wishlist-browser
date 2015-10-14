@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,17 +69,18 @@
             <div class="col-sm-12">
                 <div class="well">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-inner" role="listbox">
 
     {foreach from=$carousel item=product name=foo}
                         <div class="item{if $smarty.foreach.foo.first} active{else}{/if}">
-                            <img class="carousel-image" src="{$product.picture}" alt="{$product.name}">
-                            <div class="carousel-caption">
-                            {$product.name}
+                                <img class="carousel-image" src="{$product.picture}" alt="{$product.name}">
+                                <div class="carousel-caption">
+                                {$product.name}
+                                </div>
                             </div>
-                        </div>
     {/foreach}
-                    </div>
+
+                        </div>
                         <!-- Controls -->
                         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -98,25 +98,23 @@
 
     <div class="row body-row">
 {foreach $products as $product}
-        <div class="col-md-6 col">
+        <div class="col-md-6 body-col">
             <div class="row">
-
-                <a href={$product.productUrl} target="_blank"><img class="product-image" src={$product.picture} alt="{$product.name}"></a>
-
-                <h3 class="product-name product-info"><a href={$product.productUrl} target="_blank" class="right" title="" data-placement="left" data-toggle="tooltip" data-original-title="Click title to visit the product page on Amazon.com.">{$product.name}</a></h3>
-
-                <div class="product-author product-info">by {$product.author}</div>
+                <div class="col-md-5 body-col">
+                    <a href={$product.productUrl} target="_blank"><img class="product-image" src={$product.picture} alt="{$product.name}"></a>
+                </div>
+                <div class="col-md-7 body-col">
+                    <h3 class="product-name product-info"><a href={$product.productUrl} target="_blank" class="right" title="" data-placement="left" data-toggle="tooltip" data-original-title="Click title to visit the product page on Amazon.com.">{$product.name}</a></h3>
+                    <div class="product-author product-info">by {$product.author}</div>
 
     {if isset($product.rating) && !empty($product.rating) }
                 <img class="product-star-rating product-info" src="i/rating-{$product.starRating}.png" class="right" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="{$product.rating}.">
-                <!--<div class="product-rating">{$product.rating}</div>-->
-
+                    <!--<div class="product-rating">{$product.rating}</div>-->
         {if isset($product.totalRatings) && !empty($product.totalRatings) }
-                <span class="product-total-ratings product-info">(<a href="{$product.productReviewsUrl}" target="_blank" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="{$product.totalRatings} product reviews.">{$product.totalRatings}</a>)</span>
+             <span class="product-total-ratings product-info">(<a href="{$product.productReviewsUrl}" target="_blank" class="right" title="" data-placement="right" data-toggle="tooltip" data-original-title="{$product.totalRatings} product reviews.">{$product.totalRatings}</a>)</span>
         {/if}
-
     {/if}
-                <div class="product-price product-info">{$product.newPrice}</div>
+        <div class="product-price product-info">{$product.newPrice}</div>
 
     {if isset($product.priority) && !empty($product.priority) }
                <!-- <div class="product-priority product-info">Priority: {$product.priority}</div>-->
@@ -141,9 +139,10 @@
                 </div>
     {/if}
 
-                <!--<div class="product-added">Added: {$product.dateAdded}</div>-->
-                <!-- <div class="product-comment">{$product.comment}</div> -->
-                <!--<div class="product-asin">ASIN: {$product.asin}</div>-->
+                    <!--<div class="product-added">Added: {$product.dateAdded}</div>-->
+                    <!-- <div class="product-comment">{$product.comment}</div> -->
+                    <!--<div class="product-asin">ASIN: {$product.asin}</div>-->
+                </div>
             </div>
         </div>
 {/foreach}

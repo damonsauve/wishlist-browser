@@ -12,14 +12,6 @@ body {
     background-color: #fff;
 }
 
-.row {
-    /*border: #000 1px solid;*/
-}
-
-.col {
-    height: 240px;
-}
-
 h1 {
     font-size: 28px;
     line-height: 33px;
@@ -87,6 +79,12 @@ h5 {
     padding-bottom: 20px;
 }
 
+.body-col {
+    /*border: #000 1px solid;*/
+    padding-top: 0;
+    padding-bottom: 20px;
+}
+
 .footer-row {
     border-width: 0px 5px 5px 5px;
     border-color: gray;
@@ -125,13 +123,10 @@ h5 {
 }
 
 .product-image {
-    float: left;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    /*float: left;*/
+    margin: 0 20px;
     border: 1px solid #666;
-    padding: 4px;
+    padding: 0;
 }
 
 .product-info {
@@ -144,7 +139,8 @@ h5 {
 }
 
 .product-name {
-    margin-top: 20px;
+    margin-top: 0;
+    margin-left: 0;
     margin-right: 20px;
     margin-bottom: 6px;
 }
@@ -154,9 +150,6 @@ h5 {
     margin-right: 0;
     margin-bottom: 4px;
     margin-left: 0;
-}
-
-.product-asin {
 }
 
 .product-price {
@@ -174,22 +167,14 @@ h5 {
     line-height: 18px;
 }
 
-.product-author {
-}
-
 @media (min-width: 768px) {
 
     .container {
         width:960px;
     }
 
-    .row {
-        position: relative;
+    .body-col {
+        height: 240px;
     }
 
-    .bottom-align-text {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-    }
 }
