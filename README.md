@@ -18,7 +18,7 @@ Application details:
 To do (work in progress):
 - some Smarty vars not cached by Redis (so carousel images don't appear, for example).
 - UI/UX improvements.
-- sorting by priority, date added, title, price.
+- sorting by priority, date added, title, price, price drop.
 - pagination.
 - error handling.
 - class interfaces.
